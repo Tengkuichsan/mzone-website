@@ -15,17 +15,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Username dan password harus diisi" }, { status: 400 });
     }
 
-    // Since this is the first run, let's auto-create an admin if none exists
-    const adminCount = await prisma.admin.count();
-    if (adminCount === 0) {
-      const hashedPassword = await bcrypt.hash("admin123", 10);
-      await prisma.admin.create({
-        data: {
-          username: "admin",
-          password: hashedPassword
-        }
-      });
-    }
+    // Auto-create logic has been removed to speed up login response times.
 
     const admin = await prisma.admin.findUnique({
       where: { username }
