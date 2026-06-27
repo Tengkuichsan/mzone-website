@@ -1,0 +1,211 @@
+.section {
+  padding: 80px 0 120px;
+  background-color: var(--color-black);
+  overflow: hidden;
+}
+
+.clientsArea {
+  margin-bottom: 100px;
+}
+
+.clientSubtitle {
+  text-align: center;
+  color: var(--color-silver);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.marquee::before, .marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  z-index: 2;
+}
+
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-black), transparent);
+}
+
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-black), transparent);
+}
+
+.marqueeContent {
+  display: inline-block;
+  animation: scroll 40s linear infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.clientLogo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 40px;
+  height: 60px;
+  filter: grayscale(100%) opacity(0.5);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.clientLogo:hover {
+  filter: grayscale(0%) opacity(1);
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: var(--font-primary);
+  color: var(--color-white);
+}
+
+.testimonialContainer {
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.title {
+  font-size: 3rem;
+}
+
+.accent {
+  color: var(--color-maroon);
+}
+
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  perspective: 1000px;
+}
+
+.carouselView {
+  width: 100%;
+  max-width: 800px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.navBtn:hover {
+  background: var(--color-maroon);
+  border-color: var(--color-maroon);
+}
+
+.testimonialCard {
+  padding: 40px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  border-top: 2px solid var(--color-maroon);
+}
+
+.quoteIcon {
+  color: rgba(110, 15, 27, 0.5);
+}
+
+.testimonialText {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--color-white);
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.authorImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-maroon);
+}
+
+.authorName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.authorCompany {
+  color: var(--color-silver);
+  font-size: 0.9rem;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  background-color: var(--color-maroon);
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+  .navBtn {
+    display: none;
+  }
+  .testimonialText {
+    font-size: 1.1rem;
+  }
+}

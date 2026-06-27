@@ -1,0 +1,174 @@
+.section {
+  padding: 120px 0;
+  background-color: var(--color-black);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.accent {
+  color: var(--color-maroon);
+}
+
+.subtitle {
+  color: var(--color-soft-gray);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.faqWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  background: transparent;
+  border: none;
+  color: var(--color-white);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-secondary);
+  transition: color 0.3s ease;
+}
+
+.faqQuestion:hover, .activeQuestion {
+  color: var(--color-maroon);
+}
+
+.faqIcon {
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.faqAnswerWrapper {
+  overflow: hidden;
+}
+
+.faqAnswer {
+  padding-bottom: 24px;
+  color: var(--color-soft-gray);
+  line-height: 1.6;
+}
+
+.contactCard {
+  padding: 48px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(20,20,20,0.8) 0%, rgba(10,10,10,0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contactInfoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.infoItem {
+  display: flex;
+  gap: 16px;
+}
+
+.infoIcon {
+  color: var(--color-maroon);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.infoItem h4 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.infoItem p {
+  color: var(--color-soft-gray);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 16px;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--color-white);
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--color-maroon);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitBtn {
+  margin-top: 8px;
+  padding: 16px;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .contactInfoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .inputGroup {
+    flex-direction: column;
+  }
+  .contactCard {
+    padding: 32px 24px;
+  }
+}

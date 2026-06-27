@@ -1,0 +1,122 @@
+.footer {
+  background-color: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 80px;
+  margin-top: 80px;
+}
+
+.footerContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
+  padding-bottom: 60px;
+}
+
+.logo {
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.logoAccent {
+  color: var(--color-maroon);
+}
+
+.description {
+  color: var(--color-soft-gray);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-size: 14px;
+  max-width: 300px;
+}
+
+.socials {
+  display: flex;
+  gap: 16px;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.socialIcon:hover {
+  background-color: var(--color-maroon);
+  transform: translateY(-3px);
+}
+
+.heading {
+  font-size: 18px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.links li a {
+  color: var(--color-soft-gray);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.links li a:hover {
+  color: var(--color-white);
+  padding-left: 4px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contactInfo li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--color-soft-gray);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.contactIcon {
+  color: var(--color-maroon);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bottomBar {
+  background-color: #050505;
+  padding: 24px 0;
+  text-align: center;
+  color: var(--color-silver);
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 1024px) {
+  .footerContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .footerContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

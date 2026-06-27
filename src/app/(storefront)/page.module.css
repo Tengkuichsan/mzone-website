@@ -1,0 +1,96 @@
+.main {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  height: 400vh; /* Match HeroScene container height */
+  width: 100%;
+  overflow: visible;
+}
+
+.heroContent {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  padding: 0 5%;
+  pointer-events: none; /* Let clicks pass through to video if needed */
+}
+
+.leftSide, .rightSide {
+  flex: 1;
+  max-width: 400px;
+  pointer-events: auto; /* Re-enable clicks for text and buttons */
+}
+
+.leftSide {
+  text-align: left;
+}
+
+.rightSide {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.titleAccent {
+  color: var(--color-maroon);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: var(--color-soft-gray);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContent {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15vh 5% 10vh;
+  }
+  
+  .leftSide, .rightSide {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .actions {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .actions button {
+    width: 100%;
+  }
+}

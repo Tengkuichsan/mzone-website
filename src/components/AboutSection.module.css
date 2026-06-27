@@ -1,0 +1,151 @@
+.section {
+  padding: 120px 0;
+  background-color: var(--color-black);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.accent {
+  color: var(--color-maroon);
+}
+
+.subtitle {
+  color: var(--color-soft-gray);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-maroon), transparent);
+  z-index: 0;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.timelineIconWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timelineIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--color-maroon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  box-shadow: 0 0 20px rgba(110, 15, 27, 0.4);
+}
+
+.timelineContent {
+  padding: 24px;
+  border-radius: 12px;
+  flex: 1;
+}
+
+.year {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-silver);
+}
+
+.itemTitle {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.itemDesc {
+  color: var(--color-soft-gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.visionMission {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.card {
+  padding: 40px;
+  border-radius: 16px;
+  border-left: 4px solid var(--color-maroon);
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardDesc {
+  color: var(--color-soft-gray);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline::before {
+    left: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+}
