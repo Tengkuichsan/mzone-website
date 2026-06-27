@@ -15,7 +15,17 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Username dan password harus diisi" }, { status: 400 });
     }
 
-    // Auto-create logic has been removed to speed up login response times.
+    // Since the database was freshly reset, we need to recreate the admin
+    const adminCount = await prisma.admin.count();
+    if (adminCount === 0) {
+      const hashedPassword = await bcrypt.hash("admin123", 10);
+      await prisma.admin.create({
+        data: {
+          username: "admin",
+          password: hashedPassword
+        }
+      });
+    }
 
     const admin = await prisma.admin.findUnique({
       where: { username }
