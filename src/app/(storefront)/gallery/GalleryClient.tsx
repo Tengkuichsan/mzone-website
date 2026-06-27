@@ -9,7 +9,6 @@ import clsx from "clsx";
 type GalleryItem = {
   id: number;
   title: string;
-  category: string;
   imageUrl: string;
 };
 
@@ -86,7 +85,6 @@ export default function GalleryClient({ items }: { items: GalleryItem[] }) {
                     <img src={item.imageUrl} alt={item.title} className={styles.image} />
                     <div className={styles.overlay}>
                       <h3 className={styles.itemTitle}>{item.title}</h3>
-                      <p className={styles.itemCategory}>{item.category}</p>
                     </div>
                   </motion.div>
                 ))}
