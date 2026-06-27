@@ -19,7 +19,7 @@ const FRAME_COUNT = 240;
 const getFramePath = (index: number) => `/Hang_Tag/${index.toString().padStart(5, "0")}.png`;
 
 export default function ProductSection({ products = [] }: { products?: Product[] }) {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [images, setImages] = useState<HTMLImageElement[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
