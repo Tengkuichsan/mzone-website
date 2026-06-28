@@ -21,7 +21,9 @@ model Product {
   description String   @db.Text
   category    String
   price       String
-  image       String
+  images      Json
+  colors      Json
+  sizes       Json
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

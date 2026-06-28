@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const data = await req.json();
     
     // Basic validation
-    if (!data.name || !data.category || !data.price || !data.image || !data.description) {
+    if (!data.name || !data.category || !data.price || !data.images || !data.description || !data.colors || !data.sizes) {
       return NextResponse.json({ message: "Semua field harus diisi" }, { status: 400 });
     }
     
@@ -15,7 +15,9 @@ export async function POST(req: Request) {
         name: data.name,
         category: data.category,
         price: data.price,
-        image: data.image,
+        images: data.images,
+        colors: data.colors,
+        sizes: data.sizes,
         description: data.description
       }
     });

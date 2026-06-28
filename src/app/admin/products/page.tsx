@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Plus, Edit, Trash2 } from "lucide-react";
+import DeleteButton from "./DeleteButton";
 
 export default async function ProductsAdminPage() {
   const products = await prisma.product.findMany({
@@ -35,10 +36,13 @@ export default async function ProductsAdminPage() {
                 </td>
               </tr>
             ) : (
-              products.map(product => (
+              products.map(product => {
+                const images = product.images as string[];
+                const firstImage = Array.isArray(images) && images.length > 0 ? images[0] : "/placeholder.png";
+                return (
                 <tr key={product.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
                   <td style={{ padding: "15px 20px" }}>
-                    <img src={product.image} alt={product.name} style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "6px" }} />
+                    <img src={firstImage} alt={product.name} style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "6px" }} />
                   </td>
                   <td style={{ padding: "15px 20px", fontWeight: "bold" }}>{product.name}</td>
                   <td style={{ padding: "15px 20px", color: "var(--color-silver)" }}>{product.category}</td>
@@ -49,13 +53,12 @@ export default async function ProductsAdminPage() {
                         <Edit size={18} />
                       </Link>
                       {/* Note: In a real app, delete should be a form or API call, but we'll leave it as icon for now */}
-                      <button style={{ background: "none", border: "none", color: "#ff5555", cursor: "pointer" }}>
-                        <Trash2 size={18} />
-                      </button>
+                      <DeleteButton id={product.id} />
                     </div>
                   </td>
                 </tr>
-              ))
+                );
+              })
             )}
           </tbody>
         </table>

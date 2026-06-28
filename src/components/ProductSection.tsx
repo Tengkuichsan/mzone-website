@@ -96,43 +96,48 @@ export default function ProductSection({ products = [] }: { products?: Product[]
       {products.length > 0 && (
         <div className={clsx("container", styles.container)} style={{ paddingTop: "60px", paddingBottom: "120px" }}>
           <div className={styles.grid}>
-            {products.map((item, index) => (
-              <motion.div
-                key={item.id}
-                className={styles.cardWrapper}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
+            {products.map((item, index) => {
+                const images = item.images as unknown as string[];
+                const firstImage = Array.isArray(images) && images.length > 0 ? images[0] : "/placeholder.png";
+                
+                return (
                 <motion.div
-                  className={clsx(styles.card, "glass")}
-                  whileHover={{
-                    y: -15,
-                    rotateX: 5,
-                    rotateY: -5,
-                    boxShadow: "0 25px 50px rgba(0,0,0,0.5), 0 0 20px rgba(110, 15, 27, 0.3)",
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  key={item.id}
+                  className={styles.cardWrapper}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className={styles.imageContainer}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={item.image} alt={item.name} className={styles.image} />
-                    <div className={styles.overlay} />
-                  </div>
-                  <div className={styles.cardContent}>
-                    <h3 className={styles.cardTitle}>{item.name}</h3>
-                    <div className={styles.details}>
-                      <p className={styles.material}><span>Kategori:</span> {item.category}</p>
-                      <p className={styles.price}>{item.price}</p>
+                  <motion.div
+                    className={clsx(styles.card, "glass")}
+                    whileHover={{
+                      y: -15,
+                      rotateX: 5,
+                      rotateY: -5,
+                      boxShadow: "0 25px 50px rgba(0,0,0,0.5), 0 0 20px rgba(110, 15, 27, 0.3)",
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <div className={styles.imageContainer}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={firstImage} alt={item.name} className={styles.image} />
+                      <div className={styles.overlay} />
                     </div>
-                    <Link href={`/catalog?product=${item.id}`} className={clsx("btn btn-secondary", styles.cardBtn)}>
-                      Lihat Detail
-                    </Link>
-                  </div>
+                    <div className={styles.cardContent}>
+                      <h3 className={styles.cardTitle}>{item.name}</h3>
+                      <div className={styles.details}>
+                        <p className={styles.material}><span>Kategori:</span> {item.category}</p>
+                        <p className={styles.price}>{item.price}</p>
+                      </div>
+                      <Link href={`/catalog/${item.id}`} className={clsx("btn btn-secondary", styles.cardBtn)}>
+                        Lihat Detail
+                      </Link>
+                    </div>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            ))}
+                );
+              })}
           </div>
         </div>
       )}

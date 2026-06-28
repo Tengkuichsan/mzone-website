@@ -1,20 +1,11 @@
 import { prisma } from "@/lib/prisma";
-import Navbar from "@/components/Navbar"; // Assuming we have or will create this, or we just rely on page layout. Let's build a simple catalog view
-import Footer from "@/components/Footer";
 import Link from "next/link";
-import { ArrowLeft, MessageCircle } from "lucide-react";
-import clsx from "clsx";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export default async function CatalogPage() {
   const products = await prisma.product.findMany({
     orderBy: { createdAt: "desc" }
   });
-
-  const waSetting = await prisma.settings.findUnique({
-    where: { key: "whatsapp_number" }
-  });
-
-  const waNumber = waSetting?.value || "6281234567890"; // Fallback number
 
   return (
     <main style={{ backgroundColor: "var(--color-black)", minHeight: "100vh", color: "white" }}>
@@ -32,13 +23,13 @@ export default async function CatalogPage() {
             <p style={{ color: "var(--color-silver)" }}>Belum ada produk di katalog.</p>
           ) : (
             products.map((product) => {
-              const waText = encodeURIComponent(`Halo MZone, saya tertarik untuk memesan produk ${product.name}. Bisakah saya mendapatkan informasi lebih lanjut?`);
-              const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
+              const images = product.images as unknown as string[];
+              const firstImage = Array.isArray(images) && images.length > 0 ? images[0] : "/placeholder.png";
 
               return (
-                <div key={product.id} style={{ backgroundColor: "rgba(25,25,25,0.8)", borderRadius: "16px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", display: "flex", flexDirection: "column" }}>
+                <div key={product.id} style={{ backgroundColor: "rgba(25,25,25,0.8)", borderRadius: "16px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", display: "flex", flexDirection: "column", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}>
                   <div style={{ position: "relative", height: "300px", width: "100%" }}>
-                    <img src={product.image} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={firstImage} alt={product.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   <div style={{ padding: "25px", display: "flex", flexDirection: "column", flex: 1 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
@@ -47,23 +38,18 @@ export default async function CatalogPage() {
                         {product.category}
                       </span>
                     </div>
-                    <p style={{ color: "var(--color-silver)", fontSize: "0.9rem", marginBottom: "20px", flex: 1, lineHeight: "1.6" }}>
-                      {product.description}
-                    </p>
+                    
                     <div style={{ marginBottom: "20px" }}>
-                      <span style={{ display: "block", fontSize: "0.8rem", color: "var(--color-silver)" }}>Harga</span>
                       <span style={{ fontSize: "1.2rem", fontWeight: "bold", color: "var(--color-white)" }}>{product.price}</span>
                     </div>
                     
-                    <a 
-                      href={waUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary"
+                    <Link 
+                      href={`/catalog/${product.id}`}
+                      className="btn btn-secondary"
                       style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px", width: "100%" }}
                     >
-                      <MessageCircle size={18} /> Pesan via WhatsApp
-                    </a>
+                      Pilih Varian & Detail <ArrowRight size={18} />
+                    </Link>
                   </div>
                 </div>
               );
