@@ -17,17 +17,17 @@ export default async function AdminDashboard() {
           <div style={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "20px", color: "var(--color-maroon)" }}>
             {productCount}
           </div>
-          <Link href="/admin/products" className="btn btn-secondary" style={{ width: "100%", textAlign: "center", display: "inline-block" }}>
+          <a href="/admin/products" className="btn btn-secondary" style={{ width: "100%", textAlign: "center", display: "inline-block" }}>
             Kelola Produk
-          </Link>
+          </a>
         </div>
         
         <div style={{ backgroundColor: "rgba(25,25,25,0.8)", padding: "30px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)" }}>
           <h3 style={{ color: "var(--color-silver)", marginBottom: "10px", fontSize: "1rem" }}>Pengaturan WhatsApp</h3>
           <p style={{ marginBottom: "30px" }}>Atur nomor tujuan order pelanggan.</p>
-          <Link href="/admin/settings" className="btn btn-secondary" style={{ width: "100%", textAlign: "center", display: "inline-block" }}>
+          <a href="/admin/settings" className="btn btn-secondary" style={{ width: "100%", textAlign: "center", display: "inline-block" }}>
             Ubah Pengaturan
-          </Link>
+          </a>
         </div>
 
       </div>
