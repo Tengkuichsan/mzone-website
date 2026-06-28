@@ -12,7 +12,9 @@ type Product = {
   name: string;
   category: string;
   price: string;
-  image: string;
+  images: any;
+  colors: any;
+  sizes: any;
 };
 
 const FRAME_COUNT = 240;
