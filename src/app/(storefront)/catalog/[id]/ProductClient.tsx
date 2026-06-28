@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "./detail.module.css";
 import clsx from "clsx";
 import Link from "next/link";
-import { ArrowLeft, Check, Truck, Shield, MessageCircle, Info } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Truck, Shield, MessageCircle, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type ProductData = {
