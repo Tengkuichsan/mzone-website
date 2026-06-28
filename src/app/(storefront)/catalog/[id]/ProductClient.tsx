@@ -102,15 +102,14 @@ Apakah stoknya tersedia untuk dipesan?`;
             </div>
             
             <AnimatePresence>
-              {showDetails && detailImages.length > 0 && (
+              {detailImages.length > 0 && (
                 <motion.div 
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   className={styles.thumbnailList}
                   style={{ marginTop: "20px" }}
                 >
-                  <p style={{ width: "100%", textAlign: "center", fontSize: "0.9rem", color: "var(--color-silver)", marginBottom: "10px" }}>Detail Kelebihan (Kerah, Jahitan, dll)</p>
+                  <p style={{ width: "100%", textAlign: "center", fontSize: "0.9rem", color: "var(--color-silver)", marginBottom: "10px" }}>Foto Detail (Kerah, Jahitan, dll)</p>
                   <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
                     {detailImages.map((img, idx) => (
                       <div key={idx} className={styles.thumbnail} style={{ width: "80px", height: "80px", borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.2)" }}>
@@ -122,11 +121,6 @@ Apakah stoknya tersedia untuk dipesan?`;
                 </motion.div>
               )}
             </AnimatePresence>
-            {!showDetails && detailImages.length > 0 && (
-              <p style={{ textAlign: "center", marginTop: "15px", color: "var(--color-silver)", fontSize: "0.9rem", cursor: "pointer" }} onClick={() => setShowDetails(true)}>
-                <Info size={14} style={{ display: "inline", marginRight: "4px" }}/> Klik gambar utama untuk melihat foto detail
-              </p>
-            )}
           </div>
           
           <div className={styles.infoSection}>
