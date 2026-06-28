@@ -56,9 +56,9 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link href="/admin" className="btn btn-primary" style={{ padding: "8px 16px", fontSize: "14px" }}>
+          <a href="/admin" className="btn btn-primary" style={{ padding: "8px 16px", fontSize: "14px" }}>
             Login
-          </Link>
+          </a>
         </div>
 
         <button
@@ -90,9 +90,9 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <Link href="/admin" className="btn btn-primary" style={{ marginTop: "20px", display: "inline-block", textAlign: "center" }}>
+              <a href="/admin" className="btn btn-primary" style={{ marginTop: "20px", display: "inline-block", textAlign: "center" }}>
                 Login
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}
