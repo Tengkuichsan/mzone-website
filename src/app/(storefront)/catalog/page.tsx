@@ -24,8 +24,15 @@ export default async function CatalogPage() {
             <p style={{ color: "var(--color-silver)" }}>Belum ada produk di katalog.</p>
           ) : (
             products.map((product) => {
-              const images = product.images as unknown as string[];
-              const firstImage = Array.isArray(images) && images.length > 0 ? images[0] : "/placeholder.png";
+              const images: any = product.images;
+              let firstImage = "/placeholder.png";
+              if (images) {
+                if (Array.isArray(images) && images.length > 0) {
+                  firstImage = images[0];
+                } else if (typeof images === 'object' && images.front) {
+                  firstImage = images.front;
+                }
+              }
 
               return (
                 <div key={product.id} style={{ backgroundColor: "rgba(25,25,25,0.8)", borderRadius: "16px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", display: "flex", flexDirection: "column", transition: "transform 0.3s ease, box-shadow 0.3s ease" }}>

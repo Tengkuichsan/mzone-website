@@ -18,6 +18,7 @@ export async function POST(req: Request) {
         images: data.images,
         colors: data.colors,
         sizes: data.sizes,
+        materials: data.materials || [],
         description: data.description
       }
     });

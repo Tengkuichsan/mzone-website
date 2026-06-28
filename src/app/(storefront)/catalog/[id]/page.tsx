@@ -1,8 +1,51 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import ProductClient from "./ProductClient";
+import type { Metadata, ResolvingMetadata } from "next";
 
-export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+type Props = {
+  params: Promise<{ id: string }>
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { id } = await params;
+  const productId = parseInt(id);
+  
+  if (isNaN(productId)) {
+    return { title: "Produk Tidak Ditemukan - MZone Garment" };
+  }
+
+  const product = await prisma.product.findUnique({
+    where: { id: productId }
+  });
+
+  if (!product) {
+    return { title: "Produk Tidak Ditemukan - MZone Garment" };
+  }
+
+  // Construct dynamic SEO metadata
+  return {
+    title: `Beli ${product.name} | MZone Garment Indonesia`,
+    description: `Pesan ${product.name} dari MZone Garment. ${product.description.substring(0, 150)}...`,
+    openGraph: {
+      title: `${product.name} - MZone Garment`,
+      description: `Pesan ${product.name} kualitas terbaik hanya di MZone Garment Indonesia.`,
+      images: [
+        {
+          url: ((product.images as any)?.front) || "/placeholder.png",
+          width: 800,
+          height: 600,
+          alt: product.name,
+        }
+      ]
+    }
+  }
+}
+
+export default async function ProductDetailPage({ params }: Props) {
   const { id } = await params;
   const productId = parseInt(id);
   
@@ -24,9 +67,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const waNumber = waSetting?.value || "6281234567890";
 
   // Parse JSON fields
-  const images = (product.images as unknown as string[]) || [];
-  const colors = (product.colors as unknown as string[]) || [];
-  const sizes = (product.sizes as unknown as string[]) || [];
+  const images = (product.images as any) || { front: "", back: "", details: [] };
+  const colors = (product.colors as any) || [];
+  const sizes = (product.sizes as any) || [];
+  const materials = ((product as any).materials as any) || [];
 
   return (
     <main style={{ backgroundColor: "var(--color-black)", minHeight: "100vh", color: "white" }}>
@@ -39,7 +83,8 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           description: product.description,
           images,
           colors,
-          sizes
+          sizes,
+          materials
         }} 
         waNumber={waNumber} 
       />

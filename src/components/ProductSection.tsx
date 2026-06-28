@@ -99,8 +99,15 @@ export default function ProductSection({ products = [] }: { products?: Product[]
         <div className={clsx("container", styles.container)} style={{ paddingTop: "60px", paddingBottom: "120px" }}>
           <div className={styles.grid}>
             {products.map((item, index) => {
-                const images = item.images as unknown as string[];
-                const firstImage = Array.isArray(images) && images.length > 0 ? images[0] : "/placeholder.png";
+                const images: any = item.images;
+                let firstImage = "/placeholder.png";
+                if (images) {
+                  if (Array.isArray(images) && images.length > 0) {
+                    firstImage = images[0];
+                  } else if (typeof images === 'object' && images.front) {
+                    firstImage = images.front;
+                  }
+                }
                 
                 return (
                 <motion.div

@@ -20,46 +20,26 @@
 
 .productGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: 60px;
 }
 
-.visualSection {
+.visualContainer {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.viewTabs {
-  display: flex;
-  gap: 16px;
-}
-
-.tabBtn {
-  background: transparent;
-  border: none;
-  color: var(--color-soft-gray);
-  padding: 8px 16px;
-  font-family: var(--font-secondary);
-  font-size: 1rem;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.activeTab {
-  color: var(--color-white);
-  border-bottom-color: var(--color-maroon);
+  gap: 20px;
+  align-items: flex-start;
 }
 
 .mainVisual {
-  height: 500px;
+  flex: 1;
+  height: 600px;
   border-radius: 16px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
 }
 
 .mainImage {
@@ -68,37 +48,30 @@
   object-fit: cover;
 }
 
-.viewer360 {
+.sidebarThumbnails {
+  width: 90px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-soft-gray);
-}
-
-.viewerSub {
-  font-size: 0.85rem;
-  margin-top: 8px;
-  color: var(--color-silver);
-}
-
-.thumbnailList {
-  display: flex;
-  gap: 16px;
+  gap: 12px;
+  position: sticky;
+  top: 120px; /* Floating sticky effect */
 }
 
 .thumbnail {
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
   overflow: hidden;
-  border: 2px solid transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.thumbnail:hover, .activeThumbnail {
+.thumbnail:hover {
   border-color: var(--color-maroon);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(110, 15, 27, 0.3);
 }
 
 .thumbnail img {
@@ -116,177 +89,197 @@
   display: inline-block;
   background-color: rgba(110, 15, 27, 0.2);
   color: var(--color-maroon);
-  padding: 4px 12px;
+  padding: 6px 16px;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   align-self: flex-start;
+  border: 1px solid rgba(110, 15, 27, 0.3);
 }
 
 .productName {
-  font-size: 2.5rem;
-  margin-bottom: 8px;
-  line-height: 1.2;
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+  line-height: 1.1;
+  font-weight: 800;
+  background: linear-gradient(to right, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .price {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--color-soft-gray);
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 .price span {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--color-white);
+  display: block;
+  margin-top: 5px;
 }
 
 .description {
   color: var(--color-soft-gray);
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 40px;
+  font-size: 1.05rem;
 }
 
 .optionsGroup {
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 
 .optionTitle {
   font-size: 1rem;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   font-weight: 600;
+  color: var(--color-silver);
 }
 
 .colorOptions {
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .colorBtn {
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: transparent;
-  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 8px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(25, 25, 25, 0.8);
+  color: var(--color-soft-gray);
   cursor: pointer;
   font-family: var(--font-secondary);
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
 .colorBtn:hover {
-  border-color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(40, 40, 40, 0.8);
 }
 
 .activeColor {
-  background-color: var(--color-maroon);
   border-color: var(--color-maroon);
-  font-weight: 600;
+  background: rgba(110, 15, 27, 0.15);
+  color: var(--color-white);
+  box-shadow: 0 0 15px rgba(110, 15, 27, 0.2);
+}
+
+.colorCircle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .sizeOptions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
 .sizeBtn {
-  width: 48px;
-  height: 48px;
+  min-width: 60px;
+  height: 45px;
   border-radius: 8px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--color-white);
+  background: rgba(25, 25, 25, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-soft-gray);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-family: var(--font-secondary);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  padding: 0 15px;
+  font-weight: 500;
 }
 
 .sizeBtn:hover {
-  border-color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--color-white);
 }
 
 .activeSize {
   background-color: var(--color-white);
   color: var(--color-black);
   border-color: var(--color-white);
-  font-weight: 600;
-}
-
-.specsBox {
-  background-color: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 24px;
-  border-radius: 12px;
-  margin-bottom: 40px;
-}
-
-.specsList {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.specsList li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  color: var(--color-soft-gray);
-  font-size: 0.95rem;
-}
-
-.checkIcon {
-  color: var(--color-maroon);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.specsList strong {
-  color: var(--color-white);
+  font-weight: 700;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
 .actionButtons {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 32px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .waBtn {
-  background-color: #25D366;
+  background: linear-gradient(135deg, #25D366, #128C7E);
   color: white;
   border: none;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 24px;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 30px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+  transition: all 0.3s ease;
 }
 
 .waBtn:hover {
-  background-color: #128C7E;
-  color: white;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
 }
 
 .trustBadges {
   display: flex;
-  gap: 24px;
+  gap: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 24px;
+  padding-top: 30px;
 }
 
 .trustItem {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: var(--color-silver);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+}
+
+.trustIcon {
+  color: var(--color-maroon);
 }
 
 @media (max-width: 1024px) {
   .productGrid {
     grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .visualContainer {
+    flex-direction: column-reverse;
+  }
+  
+  .sidebarThumbnails {
+    width: 100%;
+    flex-direction: row;
+    position: relative;
+    top: 0;
+  }
+  
+  .mainVisual {
+    height: 400px;
+    width: 100%;
   }
 }
