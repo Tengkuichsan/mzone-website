@@ -3,6 +3,8 @@ import Link from "next/link";
 import styles from "./admin.module.css";
 import { LayoutDashboard, Package, Settings, LogOut } from "lucide-react";
 
+export const dynamic = 'force-dynamic';
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.layout}>
